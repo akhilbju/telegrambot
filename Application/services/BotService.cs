@@ -1,4 +1,5 @@
 using Telegram.Bot;
+using Telegram.Bot.Types.ReplyMarkups;
 
 public class BotService : IBotService
 {
@@ -11,6 +12,11 @@ public class BotService : IBotService
     public async Task sendMessage(long chatId, string message)
     {
          await _botClient.SendMessage(chatId,message);
+    }
+
+    public async Task sendMessage(long chatId, string message, InlineKeyboardMarkup keyboard)
+    {
+        await _botClient.SendMessage(chatId,message, replyMarkup:keyboard);
     }
 
 }
