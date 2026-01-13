@@ -2,7 +2,7 @@ using System.Text;
 using Telegram.Bot.Types;
 using UglyToad.PdfPig;
 
-public class ResumeService
+public class ResumeService : IResumeService
 {
     private readonly IBotService _botService;
     private readonly IGeminiService _geminiService;

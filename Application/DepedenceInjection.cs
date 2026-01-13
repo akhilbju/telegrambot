@@ -4,6 +4,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IBotService, BotService>();
         services.AddScoped<IGeminiService, GeminiService>();
+        services.AddScoped<IResumeService, ResumeService>();
         return services;
     }
 }
