@@ -18,7 +18,7 @@ public class GeminiService : IGeminiService
     public async Task<string> GenerateAsync(string prompt)
     {
         var url =
-            $"https://generativelanguage.googleapis.com/v1beta/models/{_options.Model}:generateContentgenerateContent?key={_options.ApiKey}";
+            $"https://generativelanguage.googleapis.com/v1beta/models/{_options.Model}:generateContent?key={_options.ApiKey}";
 
         var body = new
         {
