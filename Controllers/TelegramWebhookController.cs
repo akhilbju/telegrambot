@@ -38,7 +38,7 @@ public class TelegramWebhookController : ControllerBase
             await _botService.sendMessage(update.Message.Chat.Id, "Choose the Service", keyboard);
         }
 
-        if (update.Message?.Text != "RESUME")
+        if (update.Message?.Text == "RESUME")
         {
              await _botService.sendMessage(
                 update.Message.Chat.Id,
@@ -46,7 +46,7 @@ public class TelegramWebhookController : ControllerBase
             );
         }
 
-        if (update.Message?.Text != "CODE")
+        if (update.Message?.Text == "CODE")
         {
              await _botService.sendMessage(
                 update.Message.Chat.Id,
