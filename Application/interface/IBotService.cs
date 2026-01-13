@@ -4,4 +4,5 @@ public interface IBotService
 {
     Task sendMessage(long chatId, string message);
     Task sendMessage(long chatId, string message, InlineKeyboardMarkup keyboard);
+    Task AnswerCallbackQuery(string id);
 }

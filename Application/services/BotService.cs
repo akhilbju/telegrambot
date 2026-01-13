@@ -19,4 +19,9 @@ public class BotService : IBotService
         await _botClient.SendMessage(chatId,message, replyMarkup:keyboard);
     }
 
+    public async Task AnswerCallbackQuery(string id)
+    {
+        await _botClient.AnswerCallbackQuery(id);
+    }
+
 }

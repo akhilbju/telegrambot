@@ -38,22 +38,38 @@ public class TelegramWebhookController : ControllerBase
             await _botService.sendMessage(update.Message.Chat.Id, "Choose the Service", keyboard);
         }
 
-        if (update.Message?.Text == "RESUME")
+        if (update.CallbackQuery != null)
         {
-             await _botService.sendMessage(
-                update.Message.Chat.Id,
-                "You are Selected Resume"
-            );
+            var selectedOption = update.CallbackQuery.Data;
+            var chatId = update.CallbackQuery.Message.Chat.Id;
+            await _botService.AnswerCallbackQuery(update.CallbackQuery.Id);
+
+            switch (selectedOption)
+            {
+                case "RESUME":
+                    await HandleResume(chatId);
+                    break;
+
+                // case "CODE":
+                //     await HandleCode();
+                //     break;
+
+                // case "REWRITE":
+                //     await HandleRewrite();
+                //     break;
+            }
         }
 
-        if (update.Message?.Text == "CODE")
-        {
-             await _botService.sendMessage(
-                update.Message.Chat.Id,
-                "You are Selected CODE"
-            );
-        }
 
         return Ok();
+    }
+
+    private async Task HandleResume(long chatId)
+    {
+        await _botService.sendMessage(
+            chatId,
+            "Send your resume text or PDF."
+        );
+
     }
 }
