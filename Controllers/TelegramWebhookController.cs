@@ -10,7 +10,7 @@ public class TelegramWebhookController : ControllerBase
     private readonly IResumeService _resumeService;
 
 
-    public TelegramWebhookController(IBotService botService,IResumeService resumeService)
+    public TelegramWebhookController(IBotService botService, IResumeService resumeService)
     {
         _botService = botService;
         _resumeService = resumeService;
@@ -20,7 +20,15 @@ public class TelegramWebhookController : ControllerBase
     public async Task<IActionResult> Post([FromBody] Update update)
     {
         var query = update.CallbackQuery;
-        var chatId = query.Message.Chat.Id;
+        long chatId = 0;
+        if (update.CallbackQuery != null)
+        {
+            chatId = update.CallbackQuery.Message.Chat.Id;
+        }
+        else if (update.Message != null)
+        {
+            chatId = update.Message.Chat.Id;
+        }
         if (update.CallbackQuery != null)
         {
             var selectedOption = query.Data;
