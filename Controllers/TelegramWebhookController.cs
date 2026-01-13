@@ -15,7 +15,7 @@ public class TelegramWebhookController : ControllerBase
     [HttpPost("webhook")]
     public async Task<IActionResult> Post([FromBody] Update update)
     {
-        if (update.Message?.Text == "/start")
+        if (update.Message?.Text != null)
         {
             await _botService.sendMessage(
                 update.Message.Chat.Id,
