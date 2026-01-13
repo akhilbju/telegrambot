@@ -8,7 +8,7 @@ WORKDIR /src
 
 COPY . .
 RUN dotnet restore
-RUN dotnet publish Saas-Auth-Service.csproj  -c Release -o /app/publish
+RUN dotnet publish TelegramBotApp.csproj  -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
