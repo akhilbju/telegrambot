@@ -16,60 +16,22 @@ public class TelegramWebhookController : ControllerBase
     [HttpPost("webhook")]
     public async Task<IActionResult> Post([FromBody] Update update)
     {
+        var chatId = update.Message.Chat.Id;
+
         if (update.Message?.Text != null)
         {
             await _botService.sendMessage(
-                update.Message.Chat.Id,
+                chatId,
                 "Welcome to Developer Interview Bot 🚀"
             );
-
-            var keyboard = new InlineKeyboardMarkup(new[]
-            {
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData("📄 Resume Review", "RESUME"),
-                    InlineKeyboardButton.WithCallbackData("💻 Explain Code", "CODE")
-                },
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData("✍ Rewrite Text", "REWRITE")
-                }
-            });
-            await _botService.sendMessage(update.Message.Chat.Id, "Choose the Service", keyboard);
+            await _botService.GetWelcomeKeyboard(chatId);
         }
 
         if (update.CallbackQuery != null)
         {
-            var selectedOption = update.CallbackQuery.Data;
-            var chatId = update.CallbackQuery.Message.Chat.Id;
-            await _botService.AnswerCallbackQuery(update.CallbackQuery.Id);
-
-            switch (selectedOption)
-            {
-                case "RESUME":
-                    await HandleResume(chatId);
-                    break;
-
-                // case "CODE":
-                //     await HandleCode();
-                //     break;
-
-                // case "REWRITE":
-                //     await HandleRewrite();
-                //     break;
-            }
+            await _botService.HandleCallBackQuery(chatId,update.CallbackQuery);
         }
 
-
         return Ok();
-    }
-
-    private async Task HandleResume(long chatId)
-    {
-        await _botService.sendMessage(
-            chatId,
-            "Send your resume text or PDF."
-        );
-
     }
 }
