@@ -7,10 +7,10 @@ builder.Services.AddSingleton<ITelegramBotClient>(sp =>
     var token = config["Telegram:apikey"];
     return new TelegramBotClient(token);
 });
+builder.Services.AddApplication();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddApplication();
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();

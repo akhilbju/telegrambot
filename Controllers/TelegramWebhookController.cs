@@ -5,9 +5,9 @@ using Telegram.Bot.Types;
 [Route("api/telegram")]
 public class TelegramWebhookController : ControllerBase
 {
-    private readonly BotService _botService;
+    private readonly IBotService _botService;
 
-    public TelegramWebhookController(BotService botService)
+    public TelegramWebhookController(IBotService botService)
     {
         _botService = botService;
     }
