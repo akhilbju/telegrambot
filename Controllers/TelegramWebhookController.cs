@@ -16,30 +16,38 @@ public class TelegramWebhookController : ControllerBase
     [HttpPost("webhook")]
     public async Task<IActionResult> Post([FromBody] Update update)
     {
-        var chatId = update.Message.Chat.Id;
-
-        if (update.Message?.Text != null)
-        {
-            await _botService.sendMessage(
-                chatId,
-                "Welcome to Developer Interview Bot 🚀"
-            );
-            await _botService.GetWelcomeKeyboard(chatId);
-            return Ok();
-        }
-
         if (update.CallbackQuery != null)
         {
             var query = update.CallbackQuery;
+            var chatId = query.Message.Chat.Id;
             var selectedOption = query.Data;
+
             await _botService.AnswerCallbackQuery(query.Id);
 
             switch (selectedOption)
             {
                 case "RESUME":
-                    await _botService.sendMessage(chatId, "Please Send Your Resume");
+                    await _botService.sendMessage(
+                        chatId,
+                        "Please send your resume text or PDF"
+                    );
                     break;
             }
+
+            return Ok();
+        }
+
+        if (update.Message?.Text != null)
+        {
+            var chatId = update.Message.Chat.Id;
+
+            await _botService.sendMessage(
+                chatId,
+                "Welcome to Developer Interview Bot 🚀"
+            );
+
+            await _botService.GetWelcomeKeyboard(chatId);
+
             return Ok();
         }
 
