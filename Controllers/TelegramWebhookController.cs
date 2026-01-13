@@ -29,7 +29,16 @@ public class TelegramWebhookController : ControllerBase
 
         if (update.CallbackQuery != null)
         {
-            await _botService.HandleCallBackQuery(chatId,update.CallbackQuery);
+            var query = update.CallbackQuery;
+            var selectedOption = query.Data;
+            await _botService.AnswerCallbackQuery(query.Id);
+
+            switch (selectedOption)
+            {
+                case "RESUME":
+                    await _botService.sendMessage(chatId, "Please Send Your Resume");
+                    break;
+            }
         }
 
         return Ok();
