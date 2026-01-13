@@ -8,6 +8,8 @@ public class TelegramWebhookController : ControllerBase
 {
     private readonly IBotService _botService;
     private readonly IResumeService _resumeService;
+    private static HashSet<long> _awaitingInput = new();
+
 
 
     public TelegramWebhookController(IBotService botService, IResumeService resumeService)
@@ -59,8 +61,15 @@ public class TelegramWebhookController : ControllerBase
         if (update.Message?.Document != null)
         {
             var document = update.Message.Document;
+            _awaitingInput.Add(chatId);
             await _botService.sendMessage(chatId, "Resume received. Analyzing...");
+            if (!_awaitingInput.Contains(chatId))
+            {
+                await _botService.GetWelcomeKeyboard(chatId);
+                return Ok();
+            }
             await _resumeService.ProcessResumeAsync(chatId, document);
+            _awaitingInput.Remove(chatId);
             return Ok();
         }
 

@@ -33,7 +33,6 @@ public class GeminiService : IGeminiService
                 }
             }
         };
-
         var request = new HttpRequestMessage(HttpMethod.Post, url)
         {
             Content = new StringContent(
@@ -41,7 +40,8 @@ public class GeminiService : IGeminiService
         Encoding.UTF8,
         "application/json")
         };
-
+        Console.WriteLine("body",body);
+        Console.WriteLine("url",url);
         var response = await _http.SendAsync(request);
 
         if (!response.IsSuccessStatusCode)
