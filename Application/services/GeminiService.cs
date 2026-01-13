@@ -18,7 +18,7 @@ public class GeminiService : IGeminiService
     public async Task<string> GenerateAsync(string prompt)
     {
         var url =
-            $"https://generativelanguage.googleapis.com/v1beta/models/{_options.Model}:generateContent";
+            $"https://generativelanguage.googleapis.com/v1beta/models/{_options.Model}:generateContentgenerateContent?key={_options.ApiKey}";
 
         var body = new
         {
@@ -34,14 +34,21 @@ public class GeminiService : IGeminiService
             }
         };
 
-        var json = JsonSerializer.Serialize(body);
         var request = new HttpRequestMessage(HttpMethod.Post, url)
         {
-            Content = new StringContent(json, Encoding.UTF8, "application/json")
+            Content = new StringContent(
+        JsonSerializer.Serialize(body),
+        Encoding.UTF8,
+        "application/json")
         };
-        request.Headers.Add("X-goog-api-key", _options.ApiKey);
+
         var response = await _http.SendAsync(request);
-        response.EnsureSuccessStatusCode();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var error = await response.Content.ReadAsStringAsync();
+            throw new Exception(error);
+        }
 
         var responseJson = await response.Content.ReadAsStringAsync();
 
