@@ -13,6 +13,6 @@ RUN dotnet publish TelegramBotApp.csproj  -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "telegrambotapp.dll"]
+ENTRYPOINT ["dotnet", "TelegramBotApp.dll"]
 
 
