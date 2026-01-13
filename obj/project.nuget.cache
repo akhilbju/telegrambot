@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "N5CyFSKm6uQ=",
+  "dgSpecHash": "V5VwsPV0VFU=",
   "success": true,
   "projectFilePath": "C:\\telegram bot\\TelegramBotApp\\TelegramBotApp.csproj",
   "expectedPackageFiles": [
@@ -25,7 +25,12 @@
     "C:\\Users\\user\\.nuget\\packages\\system.codedom\\7.0.0\\system.codedom.7.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.management\\7.0.2\\system.management.7.0.2.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\telegram.bot\\22.8.1\\telegram.bot.22.8.1.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\telegram.bot\\22.8.1\\telegram.bot.22.8.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\uglytoad.pdfpig\\1.7.0-custom-5\\uglytoad.pdfpig.1.7.0-custom-5.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\uglytoad.pdfpig.core\\1.7.0-custom-5\\uglytoad.pdfpig.core.1.7.0-custom-5.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\uglytoad.pdfpig.fonts\\1.7.0-custom-5\\uglytoad.pdfpig.fonts.1.7.0-custom-5.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\uglytoad.pdfpig.tokenization\\1.7.0-custom-5\\uglytoad.pdfpig.tokenization.1.7.0-custom-5.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\uglytoad.pdfpig.tokens\\1.7.0-custom-5\\uglytoad.pdfpig.tokens.1.7.0-custom-5.nupkg.sha512"
   ],
   "logs": []
 }

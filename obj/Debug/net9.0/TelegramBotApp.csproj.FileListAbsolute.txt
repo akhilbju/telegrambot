@@ -43,3 +43,8 @@ C:\telegram bot\TelegramBotApp\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.d
 C:\telegram bot\TelegramBotApp\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\telegram bot\TelegramBotApp\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\telegram bot\TelegramBotApp\obj\Debug\net9.0\TelegramBotApp.sourcelink.json
+C:\telegram bot\TelegramBotApp\bin\Debug\net9.0\UglyToad.PdfPig.dll
+C:\telegram bot\TelegramBotApp\bin\Debug\net9.0\UglyToad.PdfPig.Core.dll
+C:\telegram bot\TelegramBotApp\bin\Debug\net9.0\UglyToad.PdfPig.Fonts.dll
+C:\telegram bot\TelegramBotApp\bin\Debug\net9.0\UglyToad.PdfPig.Tokenization.dll
+C:\telegram bot\TelegramBotApp\bin\Debug\net9.0\UglyToad.PdfPig.Tokens.dll

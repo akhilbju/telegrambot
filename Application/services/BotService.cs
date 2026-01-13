@@ -47,10 +47,19 @@ public class BotService : IBotService
         switch (selectedOption)
         {
             case "RESUME":
-                await sendMessage(chatId,"Please Send Your Resume");
+                await sendMessage(chatId, "Please Send Your Resume");
                 break;
         }
     }
 
+    public async Task<byte[]> DownloadTelegramFileAsync(string fileId)
+    {
+        var file = await _botClient.GetFile(fileId);
+
+        using var ms = new MemoryStream();
+        await _botClient.DownloadFile(file.FilePath, ms);
+
+        return ms.ToArray(); // PDF bytes
+    }
 
 }

@@ -1,3 +1,5 @@
+using Google.Apis.Services;
+using Google.GenAI;
 using Telegram.Bot;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,10 @@ builder.Services.AddSingleton<ITelegramBotClient>(sp =>
     var token = config["Telegram:apikey"];
     return new TelegramBotClient(token);
 });
+builder.Services.Configure<GeminiModel>(
+    builder.Configuration.GetSection("Gemini")
+);
+builder.Services.AddHttpClient<GeminiModel>();
 builder.Services.AddApplication();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -7,4 +7,5 @@ public interface IBotService
     Task AnswerCallbackQuery(string id);
     Task GetWelcomeKeyboard(long id);
     Task HandleCallBackQuery(long id, CallbackQuery query);
+    Task<byte[]> DownloadTelegramFileAsync(string fileId);
 }
