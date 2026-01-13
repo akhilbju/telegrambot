@@ -25,6 +25,7 @@ public class TelegramWebhookController : ControllerBase
                 "Welcome to Developer Interview Bot 🚀"
             );
             await _botService.GetWelcomeKeyboard(chatId);
+            return Ok();
         }
 
         if (update.CallbackQuery != null)
@@ -39,6 +40,7 @@ public class TelegramWebhookController : ControllerBase
                     await _botService.sendMessage(chatId, "Please Send Your Resume");
                     break;
             }
+            return Ok();
         }
 
         return Ok();
