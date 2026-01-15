@@ -6,8 +6,9 @@ public class ResumeService : IResumeService
 {
     private readonly IBotService _botService;
     private readonly IGeminiService _geminiService;
+    const int TELEGRAM_LIMIT = 4000;
 
-    public ResumeService(IBotService botService,IGeminiService geminiService)
+    public ResumeService(IBotService botService, IGeminiService geminiService)
     {
         _botService = botService;
         _geminiService = geminiService;
@@ -19,7 +20,10 @@ public class ResumeService : IResumeService
         if (resumeText.Length > 12000)
             resumeText = resumeText.Substring(0, 12000);
         var aiResponse = await _geminiService.AnalyzeResumeAsync(resumeText);
-        await _botService.sendMessage(chatId, aiResponse);
+        foreach (var part in SplitMessage(aiResponse))
+        {
+            await _botService.sendMessage(chatId, part);
+        }
     }
 
     private string ExtractTextFromPdf(byte[] pdfBytes)
@@ -33,5 +37,12 @@ public class ResumeService : IResumeService
         }
         return sb.ToString();
     }
-
+    IEnumerable<string> SplitMessage(string text)
+    {
+        for (int i = 0; i < text.Length; i += TELEGRAM_LIMIT)
+        {
+            yield return text.Substring(i,
+                Math.Min(TELEGRAM_LIMIT, text.Length - i));
+        }
+    }
 }
